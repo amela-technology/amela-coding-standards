@@ -1,0 +1,1 @@
+# amela-coding-standards
