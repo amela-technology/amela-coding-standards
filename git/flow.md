@@ -31,15 +31,15 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     
 2. Khi tiến hành xử lý các task tiếp theo, hãy tạo branch mới từ nhánh develop tương ứng với task đã nhận:
     ```sh
-    $ git checkout -b Task_1234
+    $ git checkout -b feature_1234
     ```
 3. Tiến hành làm task.(commit bao nhiêu tuỳ ý )
    
 4. Push code lên origin.
     ```sh
-    $ git push origin Task_1234
+    $ git push origin feature_1234
     ```
-5. Tại origin trên Github（Bitbucket）、từ branch Task_1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
+5. Tại origin trên Github（Bitbucket）, từ branch Task_1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
 6. Gửi link URL của  pull-request cho reviewer trên Cliq hoặc Skype để tiến hành review code.
 
     6.1. Trong trường hợp reviewer có yêu cầu chỉnh sửa, hãy thực hiện các bước 3. 〜 5.. 6.2. Tiếp tục gửi lại URL cho reviewer trên chatwork để tiến hành việc review code.
@@ -56,7 +56,7 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```
 2. Khi tiến hành xử lý các task tiếp theo, hãy tạo branch mới từ nhánh develop tương ứng với task đã nhận:
     ```sh
-    $ git checkout -b Task_1234
+    $ git checkout -b feature_1234
     ```
 3. Tiến hành làm task. (chỉ được 1 commit duy nhất)
   3.1 Trường hợp đã lỡ tay tạo nhiều commit, hãy dùng git rebase -i để gộp commit thành 1 commit duy nhất trước khi push code :
@@ -65,7 +65,7 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```
 4. Push code lên origin.
     ```sh
-    $ git push origin Task_1234
+    $ git push origin feature_1234
     ```
 5. Tại origin trên Github（Bitbucket）、từ branch Task_1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
      
@@ -81,15 +81,17 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
 ### Nguyên tắc
 * Mỗi pull-request tương ứng với một task.
 * Mỗi một pull-request sẽ không hạn chế số lượng commit
-* Pull-request title phải đặt sao cho tương ứng với title của task với format `refs [Task type]_#[Task Id] [Task description]` （Ví dụ: `refs bug_1234 Fix request login timeout` , `refs feature_1234 Login UI`）.
-* Đối với commit message, trong trường hợp pull-request đó chỉ có 1 commit thì có thể đặt commit message tương tự như trên là `refs [Loại ticket] #[Số ticket] [Nội dung ticket]` （Ví dụ: `refs bug #1234 Sửa lỗi login time out`）.\
+* Đối với branch, hãy đặt branch name theo định dạng `[Loại ticket]_[Số ticket]` (Ví dụ: `feature_1234`, `bug_4567`,...)
+* Pull-request title phải đặt sao cho tương ứng với title của task với format `[Task type]_[Task Id] [Task description]` （Ví dụ: `bug_1234 Fix request login timeout` , `feature_1234 Login UI`）.
+* Đối với commit message, trong trường hợp pull-request đó chỉ có 1 commit thì có thể đặt commit message tương tự như trên là `[Task type]_[Task Id] [Task description]`
+
   Trường hợp pull-request có chứa nhiêù commit thì cần phải ghi rõ trong nội dung commit message là trong commit đó xử lý đối ứng vấn đề gì trong task đó.
     * Ví dụ:
-        1. Pull-request title: `refs bug_1234 Fix request login timeout`
-        2. Trong trường hợp pull-request có 2 commit thì nội dung commit title của 2 commit sẽ tương ứng như sau
-            * `refs bug_1234 Added header time out`
-            * `refs bug_1234#1 Fix dialog loading too long`
-* Tại môi trường local repository, tuyệt đối không được thay đổi code khi ở branch master. Nhất định phải thao tác trên branch khởi tạo để làm task.
+        1. Pull-request title: `bug_1234 Fix request login timeout`
+        2. Trong trường hợp pull-request có 2 commit thì nội dung commit message của 2 commit sẽ tương ứng như sau
+            * `bug_1234 Added header time out`
+            * `bug_1234#1 Fix dialog loading too long`
+* Tại môi trường local repository, tuyệt đối không được thay đổi code khi ở branch master và develop. Nhất định phải thao tác trên branch khởi tạo để làm task.
 ### Sửa conflict không thể tạo pull request:
 * Lưu ý nếu bị confict không thể tạo pull request hãy tiến hành cập nhật nhánh develop và rebase với nhánh đang làm việc:
     ```sh
@@ -110,6 +112,14 @@ Trong trường hợp muốn dừng việc rebase lại, hãy dùng lệnh `git 
     ```
 ### Một số gợi ý giúp triển khai tốt hơn 
 1. Nêu có một chuẩn chung cho nội dung của pull request, hãy sử dụng PULL_REQUEST_TEMPLATE.MD trong thư mục templet
-2. Nêu tạo các label cho pull request để dễ dàng trong việc tracking
-
-
+2. Nêu tạo các label cho pull request để dễ dàng trong việc tracking:
+* Label theo loại task:
+   * feature
+   * bug
+   * hotfix
+   * release
+* Label theo trạng thái pull request:
+   * Waitting for review
+   * Closed
+   * Rejected
+   * Ignore
