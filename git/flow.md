@@ -31,18 +31,18 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     
 2. Khi tiến hành xử lý các task tiếp theo, hãy tạo branch mới từ nhánh develop tương ứng với task đã nhận:
     ```sh
-    $ git checkout -b feature_1234
+    $ git checkout -b feature/1234
     ```
 3. Tiến hành làm task.(commit bao nhiêu tuỳ ý )
    
 4. Push code lên origin.
     ```sh
-    $ git push origin feature_1234
+    $ git push origin feature/1234
     ```
-5. Tại origin trên Github（Bitbucket）, từ branch Task_1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
+5. Tại origin trên Github（Bitbucket）, từ branch feature/1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
 6. Gửi link URL của  pull-request cho reviewer trên Cliq hoặc Skype để tiến hành review code.
 
-    6.1. Trong trường hợp reviewer có yêu cầu chỉnh sửa, hãy thực hiện các bước 3. 〜 5.. 6.2. Tiếp tục gửi lại URL cho reviewer trên chatwork để tiến hành việc review code.
+    6.1. Trong trường hợp reviewer có yêu cầu chỉnh sửa, hãy thực hiện các bước 3. 〜 5.. 6.2. Tiếp tục gửi lại URL cho reviewer trên skype/cliq để tiến hành việc review code.
    
 7. Nếu trên x người(tuỳ dự án x có thể 1 hoặc 2) reviewer đồng ý với pull-request, người reviewer cuối cùng sẽ thực hiện việc merge pull-request. Revewer xác nhận sự đồng ý bằng comment LGTM (looks good to me, anh tin chú....).
 8. Trở lại 1.
@@ -56,7 +56,7 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```
 2. Khi tiến hành xử lý các task tiếp theo, hãy tạo branch mới từ nhánh develop tương ứng với task đã nhận:
     ```sh
-    $ git checkout -b feature_1234
+    $ git checkout -b feature/1234
     ```
 3. Tiến hành làm task. (chỉ được 1 commit duy nhất)
   3.1 Trường hợp đã lỡ tay tạo nhiều commit, hãy dùng git rebase -i để gộp commit thành 1 commit duy nhất trước khi push code :
@@ -65,13 +65,13 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```
 4. Push code lên origin.
     ```sh
-    $ git push origin feature_1234
+    $ git push origin feature/1234
     ```
-5. Tại origin trên Github（Bitbucket）、từ branch Task_1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
+5. Tại origin trên Github（Bitbucket）、từ branch feature/1234 đã được push lên hãy gửi pull-request đối với branch develop của origin. (lưu ý nội dung của pull request cần tuân thủ các quy tắc theo templet pull request (nếu có) hoặc theo bên dưới)
      
 6. Gửi link URL của  pull-request cho reviewer trên Cliq hoặc Skype để tiến hành review code.
 
-    6.1. Trong trường hợp reviewer có yêu cầu chỉnh sửa, hãy thực hiện các bước 3. 〜 5.. 6.2. Tiếp tục gửi lại URL cho reviewer trên chatwork để tiến hành việc review code.
+    6.1. Trong trường hợp reviewer có yêu cầu chỉnh sửa, hãy thực hiện các bước 3. 〜 5.. 6.2. Tiếp tục gửi lại URL cho reviewer trên skype/cliq để tiến hành việc review code.
     6.2. Nếu 6.1 xảy ra, khi sửa code xong có thể sử dụng git commit --amend để thực hiện gộp các chỉnh sửa vào commit trước đó:
       ```sh
         $ git commit --amend --no-edit
@@ -81,10 +81,9 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
 ### Nguyên tắc
 * Mỗi pull-request tương ứng với một task.
 * Mỗi một pull-request sẽ không hạn chế số lượng commit
-* Đối với branch, hãy đặt branch name theo định dạng `[Loại ticket]_[Số ticket]` (Ví dụ: `feature_1234`, `bug_4567`,...)
-* Pull-request title phải đặt sao cho tương ứng với title của task với format `[Task type]_[Task Id] [Task description]` （Ví dụ: `bug_1234 Fix request login timeout` , `feature_1234 Login UI`）.
+* Đối với branch, hãy đặt branch name theo định dạng `[Task type]/[Task Id]` (Ví dụ: `feature/1234`, `bug/4567`,...)
 * Đối với commit message, trong trường hợp pull-request đó chỉ có 1 commit thì có thể đặt commit message tương tự như trên là `[Task type]_[Task Id] [Task description]`
-
+* Pull-request title phải đặt sao cho tương ứng với title của task với format `[Task type]_[Task Id] [Task description]` （Ví dụ: `bug_1234 Fix request login timeout` , `feature_1234 Login UI`）.
   Trường hợp pull-request có chứa nhiêù commit thì cần phải ghi rõ trong nội dung commit message là trong commit đó xử lý đối ứng vấn đề gì trong task đó.
     * Ví dụ:
         1. Pull-request title: `bug_1234 Fix request login timeout`
@@ -97,7 +96,7 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```sh
      $ git checkout develop
      $ git pull origin develop
-     $ git checkout Task_1234
+     $ git checkout feature/1234
      $ git rebase develop
     ```
     
