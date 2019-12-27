@@ -82,14 +82,14 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
 * Mỗi pull-request tương ứng với một task.
 * Mỗi một pull-request sẽ không hạn chế số lượng commit
 * Đối với branch, hãy đặt branch name theo định dạng `[Task type]/[Task Id]` (Ví dụ: `feature/1234`, `bug/4567`,...)
-* Đối với commit message, trong trường hợp pull-request đó chỉ có 1 commit thì có thể đặt commit message tương tự như trên là `[Task type]_[Task Id] [Task description]`
-* Pull-request title phải đặt sao cho tương ứng với title của task với format `[Task type]_[Task Id] [Task description]` （Ví dụ: `bug_1234 Fix request login timeout` , `feature_1234 Login UI`）.
+* Đối với commit message, trong trường hợp pull-request đó chỉ có 1 commit thì có thể đặt commit message tương tự như trên là `[Task type]/[Task Id] [Task description]`
+* Pull-request title phải đặt sao cho tương ứng với title của task với format `[Task type]/[Task Id] [Task description]` （Ví dụ: `bug/1234 Fix request login timeout` , `feature/1234 Login UI`）.
   Trường hợp pull-request có chứa nhiêù commit thì cần phải ghi rõ trong nội dung commit message là trong commit đó xử lý đối ứng vấn đề gì trong task đó.
     * Ví dụ:
-        1. Pull-request title: `bug_1234 Fix request login timeout`
+        1. Pull-request title: `bug/1234 Fix request login timeout`
         2. Trong trường hợp pull-request có 2 commit thì nội dung commit message của 2 commit sẽ tương ứng như sau
-            * `bug_1234 Added header time out`
-            * `bug_1234#1 Fix dialog loading too long`
+            * `bug/1234 Added header time out`
+            * `bug/1234#1 Fix dialog loading too long`
 * Tại môi trường local repository, tuyệt đối không được thay đổi code khi ở branch master và develop. Nhất định phải thao tác trên branch khởi tạo để làm task.
 ### Sửa conflict không thể tạo pull request:
 * Lưu ý nếu bị confict không thể tạo pull request hãy tiến hành cập nhật nhánh develop và rebase với nhánh đang làm việc:
