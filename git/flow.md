@@ -2,19 +2,30 @@
 Git flow này trong tương lai sẽ có thể cập nhật, thay đổi các phần không hợp lý.
 ### Changelog
 17-10-2019: Fist release
+
+11-05-2020:
+* Thêm một số usecase thực tế và cách áp dụng
+* Thêm nhánh release nhằm hỗ trợ tốt hơn việc fixbug, hotfix cho phiên bản production
 ### Giả định
 * Đã tạo Repository trên Github（hoặc Bitbucket, gitlab ....）.
 * Branch mặc định của Repository là master.
 * Developer đã có quyền truy cập, tạo nhánh mới, tạo pull request đối với Repository.
 * Đã quyết định người có quyền review và merge.
+* Sử dụng Shared Repository Model
+* Branch master, develop, release phải được bảo vệ bằng chức năng protected branchs (không push trực tiếp từ local lên branch này)
 ### Các nhánh chính
 Repo trung tâm sẽ có hai nhánh chính với tuổi thọ vô hạn:
 * `master`
 * `develop`
- 
+
+Các nhánh phụ lưu giữ source code cho từng version ứng dụng
+* `release/xxx` (vd: release/0.1.1)
+
 `origin/master` là nhánh chính trong đó source code phải luôn luôn trong trạng thái có thể release ngay lập tức.
 
 `origin/develop` là nhánh chứa source code đang phát triển cho lần release tiếp theo.
+
+`origin/release_xxxx` là nhánh chứa source code của phiên bản đã được release được checkout ra từ nhánh master (đặt tên theo số hiệu phiên bản).
 
 Khi source code trong nhánh develop đã ổn định và sẵn sàng để được release, tất cả các thay đổi sẽ được hợp nhất(merged) trở lại vào `master` và sẽ được gắn liền với một số hiệu phiên bản
 ### Các nhánh hỗ trợ (hoặc nhánh phụ)
@@ -33,7 +44,7 @@ Mỗi nhánh này tương ứng với 1 task trên trình quản lý dự án, s
     ```sh
     $ git checkout -b feature/1234
     ```
-3. Tiến hành làm task.(commit bao nhiêu tuỳ ý )
+3. Tiến hành làm task.(số lượng commit trong 1 pull request tùy từng dự án mà thay đổi cho phù hợp)
    
 4. Push code lên origin.
     ```sh
@@ -109,8 +120,32 @@ Trong trường hợp muốn dừng việc rebase lại, hãy dùng lệnh `git 
     $ git add .
     $ git rebase --continue
     ```
+### Đang làm dở task A nhánh develop có code mới, làm thế nào để rebase luôn ?
+Trong trường hợp bạn đang làm việc trên 1 brand mà dự án yêu cầu sửa gấp hoặc ưu tiên cho task khác thì hãy sử dụng git stash
+1. Lưu tất cả code đang làm dở vào git stash
+
+    ```$ git stash save ```
+2. Checkout về nhánh develop và pull code mới về
+
+    ```sh
+       $ git checkout develop
+       $ git pull origin develop
+   ```
+3. Checkout về nhánh đang làm dở và rebase develop
+      ```sh
+       $ git checkout -
+       $ git rebase develop
+      ```
+ProTip: Sử dụng ' - ' như là một cách gọi nhánh trước đó (previous ) nếu không nhớ chính xác nhánh vừa rồi đã checkout là gì
+###Quy trình release
+1. Trên nhánh develop chuẩn bị sẵn code sạch cho việc release (pass review tester và các bên liên quan)
+2. Tạo pull request và merge code vào master với pull request title (release/xxx)
+3. Từ nhánh master, checkout code sang một nhánh mới có tên release/xxx (vd: release_0.0.1) và tiến hành deploy/build code trên nhánh này
+4. Khi có bug xảy ra hãy tạo brand hotfix/xxx từ nhánh release_xxx
+5. Sau khi làm xong thì gửi pull request vào release, merge và deploy lên.
+6. Gửi pull request vào master và merge.
 ### Một số gợi ý giúp triển khai tốt hơn 
-1. Nêu có một chuẩn chung cho nội dung của pull request, hãy sử dụng PULL_REQUEST_TEMPLATE.MD trong thư mục templet
+1. Nêu có một chuẩn chung cho nội dung của pull request, tham khảo file PULL_REQUEST_TEMPLATE.MD trong thư mục templet
 2. Nêu tạo các label cho pull request để dễ dàng trong việc tracking:
 * Label theo loại task:
    * feature
@@ -122,3 +157,4 @@ Trong trường hợp muốn dừng việc rebase lại, hãy dùng lệnh `git 
    * Closed
    * Rejected
    * Ignore
+3. Hạn chế conflict bằng cách phân chia thư mục dự án hợp lý (có thể tham khảo các phân chia thư mục package-by-feature)
