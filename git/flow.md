@@ -137,7 +137,8 @@ Trong trường hợp bạn đang làm việc trên 1 brand mà dự án yêu c�
        $ git rebase develop
       ```
 ProTip: Sử dụng ' - ' như là một cách gọi nhánh trước đó (previous ) nếu không nhớ chính xác nhánh vừa rồi đã checkout là gì
-###Quy trình release
+
+### Quy trình release
 1. Trên nhánh develop chuẩn bị sẵn code sạch cho việc release (pass review tester và các bên liên quan)
 2. Tạo pull request và merge code vào master với pull request title (release/xxx)
 3. Từ nhánh master, checkout code sang một nhánh mới có tên release/xxx (vd: release_0.0.1) và tiến hành deploy/build code trên nhánh này
