@@ -150,7 +150,7 @@ ProTip: Sử dụng ' - ' như là một cách gọi nhánh trước đó (previ
 2. Nêu tạo các label cho pull request để dễ dàng trong việc tracking:
 * Label theo loại task:
    * feature
-   * bug
+   * bugfix
    * hotfix
    * release
 * Label theo trạng thái pull request:
