@@ -119,6 +119,7 @@ Trong trường hợp muốn dừng việc rebase lại, hãy dùng lệnh `git 
     ```sh
     $ git add .
     $ git rebase --continue
+    $ git push origin [tên nhánh] -f
     ```
 ### Đang làm dở task A nhánh develop có code mới, làm thế nào để rebase luôn ?
 Trong trường hợp bạn đang làm việc trên 1 brand mà dự án yêu cầu sửa gấp hoặc ưu tiên cho task khác thì hãy sử dụng git stash
@@ -137,6 +138,18 @@ Trong trường hợp bạn đang làm việc trên 1 brand mà dự án yêu c�
        $ git rebase develop
       ```
 ProTip: Sử dụng ' - ' như là một cách gọi nhánh trước đó (previous ) nếu không nhớ chính xác nhánh vừa rồi đã checkout là gì
+
+4. Lấy lại code từ stash trước đó đã lưu
+
+    ```
+       $ git stash list
+    ```
+Để kiểm tra lại những stash đã lưu trước đó
+
+    ```
+       $ git stash apply stash@{-}
+    ```
+Thay `-` bằng version stash đã lưu
 
 ### Quy trình release
 1. Trên nhánh develop chuẩn bị sẵn code sạch cho việc release (pass review tester và các bên liên quan)
