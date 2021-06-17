@@ -60,3 +60,21 @@ Link: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-ren
 ## 18. Settings Sync
 Link: https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
 Description: Đồng bộ các keymap, custom keyboard sortcuts lên git. Từ đó sync về các máy khác nhau nhanh chóng.
+
+## 19. Auto Import
+Link: https://marketplace.visualstudio.com/items?itemName=steoates.autoimport
+
+## 20. DotENV
+Link: https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv
+
+## 21. EditorConfig for VS Code
+Link: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
+
+## 22. Highlight Matching Tag
+Link: https://marketplace.visualstudio.com/items?itemName=vincaslt.highlight-matching-tag
+
+## 23. Path Intellisense
+Link: https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense
+
+## 24. Beautify
+Link: https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify
