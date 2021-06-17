@@ -59,7 +59,4 @@ Link: https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-ren
 
 ## 18. Settings Sync
 Link: https://marketplace.visualstudio.com/items?itemName=Shan.code-settings-sync
-
-
-
-
+Description: Đồng bộ các keymap, custom keyboard sortcuts lên git. Từ đó sync về các máy khác nhau nhanh chóng.
