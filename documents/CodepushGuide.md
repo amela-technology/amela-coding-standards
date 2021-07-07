@@ -57,13 +57,39 @@ public class MainApplication extends Application implements ReactApplication {
 }
 ```
 
-4. Thêm Deployment key vào `strings.xml`:
+4. Thêm Appname và Deployment Key vào trong file .env ví dụ như thế này:
 
-```xml
- <resources>
-     <string name="app_name">AppName</string>
-     <string moduleConfig="true" name="CodePushDeploymentKey">DeploymentKey</string>
- </resources>
+```javascript
+// App name
+APP_NAME = "Example App";
+// Deployment Key
+CODEPUSH_ANDROID_DEVELOPMENT_KEY = "__example__code__push__key__";
+```
+
+Sau đó truyền value vào trong file build.gradle trong thư mục android/app:
+
+```javascript
+...
+productFlavors {
+        staging {
+            dimension "enviroment"
+            resValue "string", "app_name", project.env.get("APP_NAME")
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_DEVELOPMENT_KEY")
+            signingConfig signingConfigs.release
+        }
+        product {
+            dimension "enviroment"
+            resValue "string", "app_name", project.env.get("APP_NAME")
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_DEVELOPMENT_KEY")
+            signingConfig signingConfigs.release
+        }
+        development {
+            dimension "enviroment"
+            resValue "string", "app_name", project.env.get("APP_NAME")
+            resValue "string", "CodePushDeploymentKey", project.env.get("CODEPUSH_ANDROID_DEVELOPMENT_KEY")
+            signingConfig signingConfigs.release
+        }
+}
 ```
 
 #### Plugin Installation (Android - RNPM)
